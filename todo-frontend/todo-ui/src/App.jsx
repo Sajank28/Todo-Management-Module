@@ -15,11 +15,14 @@ function App() {
           {/* http:localhost:3000 */}
           <Route path="/" element={<ListTodoComponent />}></Route>
 
-          {/* http:localhost:3000/api/todos */}
-          <Route path="/api/todos" element={<ListTodoComponent />}></Route>
+          {/* http:localhost:3000/todos */}
+          <Route path="/todos" element={<ListTodoComponent />}></Route>
 
           {/* http:localhost:3000/add-todo */}
           <Route path='/add-todo' element={<TodoComponent />}></Route>
+
+          {/* http:localhost:3000/update-todo/{id} */}
+          <Route path='/update-todo/:id' element={<TodoComponent />}></Route>
 
         </Routes>
         <FooterComponent />
