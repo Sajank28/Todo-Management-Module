@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f81b224-628b-4300-bca5-1038b923e8f9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/2. Todo Management Module.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-management/src/main/java/net/module/todo/config/SpringSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-management/src/main/java/net/module/todo/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-management/src/main/java/net/module/todo/dto/RegisterDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-management/src/main/java/net/module/todo/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-management/src/main/java/net/module/todo/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-management/src/main/java/net/module/todo/exception/TodoAPIException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-management/src/main/java/net/module/todo/exception/UserNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-management/src/main/java/net/module/todo/repository/RoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-management/src/main/java/net/module/todo/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-management/src/main/java/net/module/todo/security/CustomUserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-management/src/main/java/net/module/todo/services/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-management/src/main/java/net/module/todo/services/impl/AuthServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo-management/src/main/java/net/module/todo/utils/PasswordEncoderImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/todo-management/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,24 +25,36 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 4
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Sajank28"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Sajank28/Todo-Management-Module.git",
+    "accountId": "0a04e3d3-9b06-40b4-9047-2a2405fd0cf2"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2ssU1dBaad8szASVwRPxjuIgLrU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/FullStack_Projects/2. Todo Management Module/todo-management"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/FullStack_Projects/2. Todo Management Module/todo-management&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
