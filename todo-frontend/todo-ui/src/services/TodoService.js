@@ -17,4 +17,5 @@ export const deleteTodo = (id) => axios.delete(BASE_URL + '/' + id);
 
 export const complete = (id,) => axios.patch(BASE_URL + "/" + id + "/complete");
 
-export const inComplete = (id) => axios.patch(BASE_URL + "/" + id + "/in-complete")
+export const inComplete = (id) => axios.patch(BASE_URL + "/" + id + "/in-complete");
+
