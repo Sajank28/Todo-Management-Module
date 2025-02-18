@@ -2,6 +2,7 @@ package net.module.todo.services.impl;
 
 
 import lombok.AllArgsConstructor;
+import net.module.todo.dto.JwtAuthResponse;
 import net.module.todo.dto.LoginDto;
 import net.module.todo.dto.RegisterDto;
 import net.module.todo.entity.Role;
@@ -9,6 +10,7 @@ import net.module.todo.entity.User;
 import net.module.todo.exception.TodoAPIException;
 import net.module.todo.repository.RoleRepository;
 import net.module.todo.repository.UserRepository;
+import net.module.todo.security.JwtTokenProvider;
 import net.module.todo.services.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -29,6 +32,7 @@ public class AuthServiceImpl implements AuthService {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
+    private JwtTokenProvider jwtTokenProvider;
 
     @Override
     public String register(RegisterDto registerDto) {
@@ -61,7 +65,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String login(LoginDto loginDto) {
+    public JwtAuthResponse login(LoginDto loginDto) {
 
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getUsernameOrEmail(),
@@ -69,6 +73,26 @@ public class AuthServiceImpl implements AuthService {
         ));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return "Login Successful!";
+
+        String token = jwtTokenProvider.generateToken(authentication);
+
+        Optional<User> userOptional = userRepository.findByUsernameOrEmail(loginDto.getUsernameOrEmail(), loginDto.getUsernameOrEmail());
+
+        String role = null;
+        if (userOptional.isPresent()) {
+            User loggedInuser = userOptional.get();
+            Optional<Role> optionalRole = loggedInuser.getRoles().stream().findFirst();
+
+            if(optionalRole.isPresent()){
+                Role userRole = optionalRole.get();
+                role = userRole.getName();
+            }
+        }
+
+        JwtAuthResponse jwtAuthResponse = new JwtAuthResponse();
+        jwtAuthResponse.setRole(role);
+        jwtAuthResponse.setAccessToken(token);
+
+        return jwtAuthResponse;
     }
 }

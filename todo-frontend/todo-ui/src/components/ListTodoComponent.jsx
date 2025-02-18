@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getAllTodos, deleteTodo, complete, inComplete } from '../services/TodoService'
 import { useNavigate } from 'react-router-dom'
+import { isAdminUser } from '../services/AuthService'
 
 const ListTodoComponent = () => {
 
@@ -27,6 +28,8 @@ const ListTodoComponent = () => {
 
     const [todos, setTodos] = useState([])
     const navigate = useNavigate();
+
+    const isAdmin = isAdminUser();
 
     useEffect(() => {
         listTodos();
@@ -80,8 +83,14 @@ const ListTodoComponent = () => {
             <br />
             <h2 className='text-center'> List Of Todos </h2>
             <div>
-                <button className='btn btn-primary' onClick={addTodos}> Add Todo </button>
-                <br /> <br />
+
+                {
+                    isAdmin &&
+                    <button className='btn btn-primary' onClick={addTodos}> Add Todo </button>
+
+                }
+
+
                 <table className='table table-bordered table-striped'>
                     <thead className='text-center'>
                         <tr>
@@ -99,8 +108,16 @@ const ListTodoComponent = () => {
                                     <td> {todo.description} </td>
                                     <td> {todo.completed ? 'Yes' : 'No'} </td>
                                     <td>
-                                        <button className='btn btn-info' onClick={() => updateTodo(todo.id)} style={{ marginTop: "3px", marginBottom: "3px" }}> Update </button>
-                                        <button className='btn btn-danger' style={{ marginLeft: "10px", marginTop: "3px", marginBottom: "3px" }} onClick={() => removeTodo(todo.id)}> Delete </button>
+                                        {
+                                            isAdmin &&
+                                            <button className='btn btn-info' onClick={() => updateTodo(todo.id)} style={{ marginTop: "3px", marginBottom: "3px" }}> Update </button>
+                                        }
+
+                                        {
+                                            isAdmin &&
+                                            <button className='btn btn-danger' style={{ marginLeft: "10px", marginTop: "3px", marginBottom: "3px" }} onClick={() => removeTodo(todo.id)}> Delete </button>
+                                        }
+
                                         <button className='btn btn-outline-success' style={{ marginLeft: "10px", marginTop: "3px", marginBottom: "3px" }} onClick={() => completeTodo(todo.id)}> Complete </button>
                                         <button className='btn btn-outline-warning' style={{ marginLeft: "10px", marginTop: "3px", marginBottom: "3px" }} onClick={() => inCompleteTodo(todo.id)}> In-Complete </button>
                                     </td>

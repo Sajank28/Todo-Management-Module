@@ -1,7 +1,20 @@
 import React from 'react'
 import axios from 'axios'
+import { getToken } from './AuthService';
 
 const BASE_URL = "http://localhost:8080/api/todos"
+
+//add a request interceptor -. google (axios doc -> interceptors)
+axios.interceptors.request.use(function (config) {
+
+    //Get token
+    config.headers['Authorization'] = getToken();
+
+    return config;
+}, function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+});
 
 export const getAllTodos = () => {
     return axios.get(BASE_URL);

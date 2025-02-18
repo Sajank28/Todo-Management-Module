@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { loginAPICall } from '../services/AuthService';
+import { loginAPICall, saveLoggedInUser, storeToken } from '../services/AuthService';
 import { useNavigate } from 'react-router-dom';
 
 const LoginComponent = () => {
@@ -9,15 +9,33 @@ const LoginComponent = () => {
 
     const navigate = useNavigate();
 
-    function handleLoginForm(e) {
+    async function handleLoginForm(e) {
         e.preventDefault();
 
         const loginObj = { username, password };
         console.log(loginObj)
 
-        loginAPICall(username, password).then((response) => {
+        await loginAPICall(username, password).then((response) => {
             console.log(response.data);
+
+            //Basic auth token
+            // const token = 'Basic ' + window.btoa(username + ":" + password);
+            //store token in browser local storage
+            // storeToken(token);
+
+
+            //JWT token
+            const token = 'Bearer ' + response.data.accesssToken;
+            const role = response.data.role;
+
+            storeToken(token);
+
+            saveLoggedInUser(username, role);
+
             navigate('/todos')
+
+            //refresh page after you login
+            window.location.reload(false);
         }).catch(error => {
             console.error(error);
         })
